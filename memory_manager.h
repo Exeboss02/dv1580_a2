@@ -2,6 +2,20 @@
 #define MEMORY_MANAGER_H
 
 #include <stddef.h> // For size_t
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h> //used for memcpy
+//#include <stdatomic.h>
+
+typedef struct memoryBlock { //struct to handle blocks/chunks of the allocated memory
+    void* start;
+    struct memoryBlock* next;
+    size_t blockSize;
+    bool occupied;
+
+} memoryBlock;
+
+void* workerThreadFunc(void* threadID);
 
 // Helps C++ compilers to handle C header files
 #ifdef __cplusplus

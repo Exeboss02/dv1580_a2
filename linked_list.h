@@ -4,6 +4,7 @@
 
 #include "memory_manager.h" // Include your custom memory manager
 #include <stdint.h>
+#include <stdio.h>
 #include <pthread.h>
 typedef struct Node
 {
