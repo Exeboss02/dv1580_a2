@@ -10,12 +10,6 @@ int totalNrOfBlocks;
 pthread_mutexattr_t recursiveMutexAttributes;
 pthread_mutex_t lock1;
 
-void * workerThreadFunc(void* threadID)
-{
-    long* ID = (long*) threadID;
-    printf("THREAD ID: %ld\n", *ID);
-}
-
 void mem_init(size_t size) //initialize memory of a certain size and storing the pointer to it in memory
 {
     memoryStart = malloc(size);
@@ -218,13 +212,3 @@ void mem_deinit() //freeing the pointers of the memory-pointer and the memoryBlo
     head = NULL;
     pthread_mutex_destroy(&lock1);
 }
-
-// int main(void)
-// {
-//     pthread_t thread1;
-
-//     pthread_create(&thread1, NULL, workerThreadFunc, (void*)&thread1);
-//     pthread_exit(NULL);
-
-//     return 0;
-// }

@@ -5,6 +5,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h> //used for memcpy
+#include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
 //#include <stdatomic.h>
 
 typedef struct memoryBlock { //struct to handle blocks/chunks of the allocated memory
