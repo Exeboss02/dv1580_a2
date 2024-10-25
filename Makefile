@@ -35,23 +35,23 @@ mmanager: $(LIB_NAME)
 list: linked_list.o
 
 # Test target to run the memory manager test program
-#test_mmanager: $(LIB_NAME)
-#$(CC) test_memory_manager.c -o test_memory_manager -L. -lmemory_manager $(CFLAGS)
+test_mmanager: $(LIB_NAME)
+	$(CC) test_memory_manager.c -o test_memory_manager -L. -lmemory_manager $(CFLAGS)
 
 # Test target to run the linked list test program
-#test_list: $(LIB_NAME)
-#$(CC) linked_list.c test_linked_list.c -o test_linked_list -L. libmemory_manager.so $(CFLAGS)
+test_list: $(LIB_NAME)
+	$(CC) linked_list.c test_linked_list.c -o test_linked_list -L. libmemory_manager.so $(CFLAGS)
 	
 #run tests
 run_tests: run_test_mmanager run_test_list
 	
 # run test cases for the memory manager
-#run_test_mmanager:
-#LD_LIBRARY_PATH=. ./test_memory_manager 2
+run_test_mmanager:
+	LD_LIBRARY_PATH=. ./test_memory_manager 2
 
 # run test cases for the linked list
-#run_test_list:
-#LD_LIBRARY_PATH=. ./test_linked_list 0
+run_test_list:
+	LD_LIBRARY_PATH=. ./test_linked_list 0
 
 # Clean target to clean up build files
 clean:
