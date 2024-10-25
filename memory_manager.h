@@ -34,6 +34,7 @@ extern "C"
      * @param size The size of the memory pool to initialize.
      */
     void mem_init(size_t size);
+    void mergeEmptyBlocks(memoryBlock* blockBeforeEmptyBlock);
 
     /**
      * Allocates a block of memory of the specified size. This function finds a

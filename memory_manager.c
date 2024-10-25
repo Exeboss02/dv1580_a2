@@ -30,6 +30,50 @@ void mem_init(size_t size) //initialize memory of a certain size and storing the
     memorySize = size;
 }
 
+void mergeEmptyBlocks(memoryBlock* blockBeforeEmptyBlock)
+{
+    memoryBlock* walker = blockBeforeEmptyBlock;
+
+    if(blockBeforeEmptyBlock->occupied)
+    {
+        walker = blockBeforeEmptyBlock->next;
+    }
+
+    if(walker->next->next != NULL)
+    {
+        memoryBlock* emptySpace = walker;
+        walker = walker->next;
+
+        while(!(walker->occupied))
+        {
+            // if(walker->next == NULL)
+            // {
+            //     printf("IF_STATEMENT!!!\n");
+            //     emptySpace->blockSize += walker->blockSize;
+            //     free(walker);
+            //     totalNrOfBlocks--;
+
+            //     pthread_mutex_unlock(&lock1);
+            //     return;
+            // }
+
+            printf("ELSE_STATEMENT!!!\n");
+            emptySpace->blockSize += walker->blockSize;
+            memoryBlock* toDelete = walker;
+            emptySpace->next = walker->next;
+            walker = walker->next;
+            free(toDelete);
+            totalNrOfBlocks--;
+
+            if(emptySpace->next == NULL)
+            {
+                return;
+            }
+        }
+    }
+
+}
+
 void* mem_alloc(size_t size)
 {
     pthread_mutex_lock(&lock1);
@@ -168,6 +212,8 @@ void mem_free(void* block) //free a memory block by finding the block and markin
         {
             walker->next->occupied = false;
             usedMemory -= walker->next->blockSize;
+
+            mergeEmptyBlocks(walker);
         }
     }
     
