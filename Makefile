@@ -12,7 +12,7 @@ else
 endif
 
 # Source and Object Files
-SRC = memory_manager.c linked_list.c
+SRC = memory_manager.c
 OBJ = $(SRC:.c=.o)
 
 .PHONY: all mmanager list run_tests run_test_mmanager run_test_list clean
